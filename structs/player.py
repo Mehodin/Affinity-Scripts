@@ -65,7 +65,7 @@ class player():
         """
         return client.set_clantag(clantag)
 
-    def __getIndex(self, clantag: str, *args, **kwargs):
+    def __getIndex(self, *args, **kwargs):
         """
         Returns index of current entity.
         """
