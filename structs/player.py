@@ -38,7 +38,7 @@ class player():
         """
         if attribute.lower() in self.setAttributeFunctions:
             try:
-                self.getAttributeFunctions[attribute.lower()]()
+                return self.getAttributeFunctions[attribute.lower()]()
             except KeyError:
                 raise ValueError(f"Failed to get attribute {attribute}, due to the function not being defined in 'self.getAttributeFunctions'")
             return
