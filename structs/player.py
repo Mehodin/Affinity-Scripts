@@ -1,7 +1,7 @@
 import client
 
 class player():
-    def __init__(self):
+    def __init__(self, index):
         self.setAttributeFunctions = {
             #
             # Dictionary which holds all the functions to be called using the overloaded __setattr__ function.
@@ -18,7 +18,13 @@ class player():
         }
 
 
-        self.__dict__ = self.setAttributeFunctions # Overloading __dict__ member.
+        self.__dict__ = {
+            #
+            # Overloading __dict__ member.
+            #
+            'set': self.setAttributeFunctions,
+            'get': self.getAttributeFunctions
+        } 
 
     def __setattr__(self, attribute, value):
         """
@@ -47,9 +53,6 @@ class player():
     def __iter__(self):
         raise NotImplementedError("Not yet implemented")
 
-    def __dict__(self):
-        return self.setAttributeFunctions
-
     def __setAngles(self, angles: tuple, *args, **kwargs):
         """
         Set angle function.
@@ -69,7 +72,4 @@ class player():
         """
         Returns index of current entity.
         """
-        for entity in client.get_entities():
-            if entity.name == self.name:
-                return entity.index
-        return
+        return client.get_local_player()
